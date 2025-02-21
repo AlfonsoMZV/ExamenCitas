@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="form-row align-items-center">
+        <div class="row">
+            <div class="col-md-1">
+                <div class="col-auto my-1">
+                    Buscar Id
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="col-auto my-1">
+                    <div class="custom-control mr-sm-2">
+                        <input type="number" 
+                                [(ngModel)]="id"
+                                [ngModelOptions]="{standalone: true}"
+                                class="form-control" id="idCita">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="col-auto my-1">
+                    <button type="button" 
+                            class="btn btn-primary"
+                            data-toggle="tooltip" 
+                            data-placement="top" 
+                            (click)="getCitaById()"
+                            title="Buscar">
+                            <i class="bi bi-search"></i>
+                     </button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="col-auto my-1">
+                    <button type="button" 
+                            class="btn btn-primary"
+                            (click)="getCitas()"
+                            >
+                            Buscar Todo
+                     </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id Cita</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Medico</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Tipo Cita</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cita of citasList">
+                            <th>{{ cita.id }}</th>
+                            <td>{{ cita.paciente }}</td>
+                            <td>{{ cita.medico }}</td>
+                            <td>{{ cita.fecha }}</td>
+                            <td>{{ cita.tipocita }}</td>
+                            <td>
+                                <button type="button" 
+                                        class="btn btn-primary"
+                                        data-toggle="tooltip" 
+                                        data-placement="top" 
+                                        title="Modificar"
+                                        (click)="updateDialog(cita)">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button type="button" 
+                                        class="btn btn-danger"
+                                        data-toggle="tooltip" 
+                                        data-placement="top" 
+                                        (click)="deleteDialog(cita)">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" 
+                        class="btn btn-success"
+                        (click)="openDialogNuevo()">
+                    Nuevo
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

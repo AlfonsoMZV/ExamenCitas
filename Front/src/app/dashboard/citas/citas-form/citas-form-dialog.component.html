@@ -1,0 +1,52 @@
+<div class="container">
+    <form>
+        <div class="form-group row">
+            <label *ngIf="data.crud == 'modificar'" class="col-sm-2 col-form-label">Modificar Cita</label>
+            <label *ngIf="data.crud == 'nuevo'" class="col-sm-2 col-form-label">Insertar Cita</label>
+        </div>
+        <br/>
+        <div class="form-group row">
+            <label for="paciente" class="col-sm-2 col-form-label">Paciente:</label>
+            <div class="col-sm-10">
+                <input type="text" [(ngModel)]="paciente" [ngModelOptions]="{standalone: true}" class="form-control" id="paciente">
+            </div>
+        </div>
+        <br/>
+        <div class="form-group row">
+            <label for="medico" class="col-sm-2 col-form-label">Medico:</label>
+            <div class="col-sm-10">
+                <input type="text" [(ngModel)]="medico" [ngModelOptions]="{standalone: true}" class="form-control" id="medico">
+            </div>
+        </div>
+        <br/>
+        <div class="form-group row">
+            <label for="tipocita" class="col-sm-2 col-form-label">Tipo Cita:</label>
+            <div class="col-sm-10">
+                <select id="tipocita" [(ngModel)]="tipocita" [ngModelOptions]="{standalone: true}" class="form-control">
+                    <option *ngFor="let tipo of listTipo" [value]="tipo.cita">
+                        {{ tipo.cita }}
+                    </option>
+                </select>            
+            </div>
+        </div>
+        <br/>
+        <div class="form-group row">
+            <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
+            <div class="col-sm-10">
+                <mat-form-field>
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="datepicker" [ngModelOptions]="{standalone: true}" [(ngModel)]="fecha">
+                    <mat-datepicker #datepicker/>
+                    <mat-datepicker-toggle [for]="datepicker" matSuffix/>
+                </mat-form-field>
+            </div>
+        </div>
+        <br/>  
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="button" *ngIf="data.crud == 'nuevo'" class="btn btn-success" (click)="save()">Agregar</button>
+                <button type="button" *ngIf="data.crud == 'modificar'" class="btn btn-primary" (click)="update()">Modificar</button>
+            </div>
+        </div>
+    </form>
+</div>
